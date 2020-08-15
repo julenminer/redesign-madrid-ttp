@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'add_card_gui.dart';
+
 class HomeGUI extends StatefulWidget {
   @override
   _HomeGUIState createState() => _HomeGUIState();
@@ -46,7 +48,9 @@ class AddCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => AddCardGUI()));
+      },
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
