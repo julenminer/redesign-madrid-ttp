@@ -3,6 +3,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ttpmadridredesign/home_gui.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   SharedPreferences pref = await SharedPreferences.getInstance();
   String cardNumber = pref.getString("cardNumber");
   runApp(MyApp(

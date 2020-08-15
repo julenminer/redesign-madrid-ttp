@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AddCardGUI extends StatefulWidget {
   @override
@@ -98,6 +99,7 @@ class _AddCardGUIState extends State<AddCardGUI> {
                     ),
                     Expanded(
                         child: TextField(
+                      keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                           hintText: "Number",
                           border: OutlineInputBorder(
@@ -111,12 +113,19 @@ class _AddCardGUIState extends State<AddCardGUI> {
                     ))
                   ],
                 ),
-                SizedBox(height: 16,),
+                SizedBox(
+                  height: 16,
+                ),
                 SizedBox(
                   width: double.maxFinite,
                   child: CupertinoButton(
                     color: Colors.red,
-                    onPressed: (){},
+                    onPressed: () async {
+                      SharedPreferences prefs =
+                          await SharedPreferences.getInstance();
+                      await prefs.setString("cardNumber", "001-0000023768");
+                      Navigator.pop(context, prefs.getString("cardNumber"));
+                    },
                     child: Text("Save"),
                   ),
                 )
