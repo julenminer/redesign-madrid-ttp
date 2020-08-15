@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ttpmadridredesign/home_gui.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  SharedPreferences pref = await SharedPreferences.getInstance();
+  String cardNumber = pref.getString("cardNumber");
+  runApp(MyApp(
+    cardNumber: cardNumber,
+  ));
 }
 
 class MyApp extends StatelessWidget {
+  MyApp({this.cardNumber});
+
+  String cardNumber;
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -17,7 +25,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.red,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomeGUI(),
+      home: HomeGUI(
+        cardNumber: cardNumber,
+      ),
     );
   }
 }

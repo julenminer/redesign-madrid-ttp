@@ -3,11 +3,22 @@ import 'package:flutter/material.dart';
 import 'add_card_gui.dart';
 
 class HomeGUI extends StatefulWidget {
+  HomeGUI({this.cardNumber});
+
+  String cardNumber;
   @override
   _HomeGUIState createState() => _HomeGUIState();
 }
 
 class _HomeGUIState extends State<HomeGUI> {
+  String _cardNumber;
+
+  @override
+  void initState() {
+    super.initState();
+    _cardNumber = widget.cardNumber;
+  }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -24,7 +35,7 @@ class _HomeGUIState extends State<HomeGUI> {
             Flexible(
               child: Card(
                 elevation: 3,
-                child: AddCardWidget(),
+                child: _cardNumber == null ? AddCardWidget() : Container(),
               ),
             ),
             Flexible(
