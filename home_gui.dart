@@ -18,17 +18,13 @@ class _HomeGUIState extends State<HomeGUI> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            SizedBox(
-              width: double.maxFinite,
-              height: size.height / 2.7,
+            Flexible(
               child: Card(
                 elevation: 3,
                 child: AddCardWidget(),
               ),
             ),
-            SizedBox(
-              width: double.maxFinite,
-              height: size.height / 2.7,
+            Flexible(
               child: Card(
                 elevation: 3,
                 child: Center(
@@ -55,8 +51,8 @@ class AddCardWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
-              Icons.add_circle,
-              size: 50,
+              Icons.add_circle_outline,
+              size: 80,
             ),
             SizedBox(height: 16,),
             Text(
