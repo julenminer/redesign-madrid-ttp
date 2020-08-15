@@ -35,7 +35,31 @@ class _HomeGUIState extends State<HomeGUI> {
             Flexible(
               child: Card(
                 elevation: 3,
-                child: _cardNumber == null ? AddCardWidget() : Container(),
+                child: _cardNumber == null ? InkWell(
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => AddCardGUI()));
+                  },
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.add_circle_outline,
+                          size: 80,
+                        ),
+                        SizedBox(height: 16,),
+                        Text(
+                          "Add card",
+                          style: Theme.of(context).textTheme.headline4.copyWith(
+                              color: Theme.of(context).brightness ==
+                                  Brightness.light
+                                  ? Colors.black
+                                  : Colors.white),
+                        )
+                      ],
+                    ),
+                  ),
+                ) : Container(),
               ),
             ),
             Flexible(
@@ -51,37 +75,6 @@ class _HomeGUIState extends State<HomeGUI> {
           ],
         ),
       )),
-    );
-  }
-}
-
-class AddCardWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => AddCardGUI()));
-      },
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.add_circle_outline,
-              size: 80,
-            ),
-            SizedBox(height: 16,),
-            Text(
-              "Add card",
-              style: Theme.of(context).textTheme.headline4.copyWith(
-                  color: Theme.of(context).brightness ==
-                      Brightness.light
-                      ? Colors.black
-                      : Colors.white),
-            )
-          ],
-        ),
-      ),
     );
   }
 }
