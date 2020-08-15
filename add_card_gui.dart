@@ -13,6 +13,16 @@ class _AddCardGUIState extends State<AddCardGUI> {
         elevation: 0,
         title: Text("Add card"),
       ),
+      body: SafeArea(
+          child: Column(
+        children: [
+          Row(
+            children: [
+              Image.asset("assets/holding-phone-colour-800px.png")
+            ],
+          )
+        ],
+      )),
     );
   }
 }
