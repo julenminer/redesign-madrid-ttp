@@ -11,6 +11,7 @@ class _HomeGUIState extends State<HomeGUI> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         title: Text("Transport Card of Madrid"),
       ),
       body: SafeArea(
