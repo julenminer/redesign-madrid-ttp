@@ -119,7 +119,7 @@ class _AddCardGUIState extends State<AddCardGUI> {
                 SizedBox(
                   width: double.maxFinite,
                   child: CupertinoButton(
-                    color: Colors.red,
+                    color: Theme.of(context).primaryColor,
                     onPressed: () async {
                       SharedPreferences prefs =
                           await SharedPreferences.getInstance();
