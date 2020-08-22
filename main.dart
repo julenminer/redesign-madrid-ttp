@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ttpmadridredesign/home_gui.dart';
 
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'CRTM',
       theme: ThemeData(
+        textTheme: GoogleFonts.montserratTextTheme(),
         brightness: Brightness.light,
         primarySwatch: MaterialColor(0xFFc43b22, color),
         visualDensity: VisualDensity.adaptivePlatformDensity,

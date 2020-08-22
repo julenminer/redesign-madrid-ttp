@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'add_card_gui.dart';
@@ -26,7 +27,7 @@ class _HomeGUIState extends State<HomeGUI> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Text("Transport Card of Madrid"),
+        title: Text("Transport Card of Madrid", style: GoogleFonts.lato(),),
       ),
       body: SafeArea(
           child: Padding(
@@ -99,15 +100,34 @@ class _HomeGUIState extends State<HomeGUI> {
                                   style: Theme.of(context).textTheme.headline6,
                                 ),
                               )),
-                          IconButton(icon: Icon(Icons.more_vert), onPressed: () async {
-                            SharedPreferences prefs = await SharedPreferences.getInstance();
-                            prefs.remove("cardNumber");
-                            if(mounted) {
-                              setState(() {
-                                _cardNumber = null;
-                              });
-                            }
-                          })
+                          PopupMenuButton<String>(
+                            icon: Icon(Icons.more_vert),
+                            onSelected: (String result) async {
+                              switch(result){
+                                case "history":
+                                  break;
+                                case "remove":
+                                  SharedPreferences prefs = await SharedPreferences.getInstance();
+                                  prefs.remove("cardNumber");
+                                  if(mounted) {
+                                    setState(() {
+                                      _cardNumber = null;
+                                    });
+                                  }
+                                  break;
+                              }
+                            },
+                            itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+                              const PopupMenuItem<String>(
+                                value: "history",
+                                child: Text('View usage history'),
+                              ),
+                              const PopupMenuItem<String>(
+                                value: "remove",
+                                child: Text('Remove card'),
+                              )
+                            ],
+                          )
                         ],
                       ),
                       SizedBox(
