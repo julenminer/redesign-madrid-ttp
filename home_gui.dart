@@ -91,7 +91,7 @@ class _HomeGUIState extends State<HomeGUI> {
                         children: [
                           Image.asset(
                             "assets/crtm-logo.png",
-                            width: 90,
+                            width: MediaQuery.of(context).size.width * 0.2,
                           ),
                           Flexible(
                               child: Padding(
