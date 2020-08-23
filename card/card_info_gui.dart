@@ -93,12 +93,13 @@ class CardInfoGUI extends StatelessWidget {
             "Card number\n001 001 001 001 0000023768",
             style: Theme.of(context).textTheme.subtitle2,
           ),
+          SizedBox(height: 8,),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Image.asset(
                 "assets/card-logos.png",
-                width: 130,
+                width: MediaQuery.of(context).size.width *0.3,
               ),
             ],
           )
