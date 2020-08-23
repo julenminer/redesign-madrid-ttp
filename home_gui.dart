@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ttpmadridredesign/card/card_page_gui.dart';
+import 'package:ttpmadridredesign/recharge/recharge_page_gui.dart';
 
 import 'add_card_gui.dart';
 
@@ -18,7 +19,7 @@ class _HomeGUIState extends State<HomeGUI> {
 
   @override
   void initState() {
-   _pages = [CardPageGUI(widget.cardNumber), Container()];
+   _pages = [CardPageGUI(widget.cardNumber), RechargePageGUI()];
     super.initState();
   }
   @override
