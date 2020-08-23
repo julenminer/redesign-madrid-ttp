@@ -5,10 +5,13 @@ import 'package:ttpmadridredesign/card/card_info_gui.dart';
 import 'package:ttpmadridredesign/card/card_provider.dart';
 
 class CardPageGUI extends StatelessWidget {
+  CardPageGUI(this.cardNumber);
+  String cardNumber;
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<CardProvider>(
-      create: (_) => new CardProvider(),
+      create: (_) => new CardProvider(cardNumber),
       child: Consumer<CardProvider>(
         builder: (context, cardProviderNotifier, child){
           return Padding(

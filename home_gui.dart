@@ -16,8 +16,13 @@ class HomeGUI extends StatefulWidget {
 
 class _HomeGUIState extends State<HomeGUI> {
   int _currentIndex = 0;
-  List<Widget> _pages = [CardPageGUI(), Container()];
+  List<Widget> _pages;
 
+  @override
+  void initState() {
+   _pages = [CardPageGUI(widget.cardNumber), Container()];
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
