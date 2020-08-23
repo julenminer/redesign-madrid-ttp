@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ttpmadridredesign/card/card_page_gui.dart';
-import 'package:ttpmadridredesign/usage_history_gui.dart';
 
 import 'add_card_gui.dart';
 

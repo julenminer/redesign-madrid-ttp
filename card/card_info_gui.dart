@@ -27,7 +27,7 @@ class CardInfoGUI extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text(
                   "ABONO 30 DÍAS JOVEN T. PLANA",
-                  style: Theme.of(context).textTheme.headline6,
+                  style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.05),
                 ),
               )),
               PopupMenuButton<String>(
