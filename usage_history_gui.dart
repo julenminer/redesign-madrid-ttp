@@ -7,14 +7,14 @@ class UsageHistoryGui extends StatelessWidget {
       appBar: AppBar(
         title: Text("Usage history"),
       ),
+      backgroundColor: Colors.grey[100],
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(8.0),
           child: ListView(
             children: [
               ListElement(TransportType.cercanias, "Sol", DateTime(2020, 07, 11, 13, 22), "Avenida de América", DateTime(2020, 07, 11, 14, 7)),
-              Divider(),
-              ListElement(TransportType.metro, "Sol", DateTime(2020, 07, 13, 11, 02), "Pacífico", DateTime(2020, 07, 13, 11, 17)),
+              ListElement(TransportType.metro, "Sol", DateTime(2020, 07, 10, 11, 02), "Pacífico", DateTime(2020, 07, 10, 11, 17)),
 
             ],
           ),
@@ -53,29 +53,33 @@ class ListElement extends StatelessWidget {
         assetName = "assets/lineas_emt.png";
         break;
     }
-    return Container(
-      padding: EdgeInsets.all(8.0),
-      child: Row(
-        children: [
-          Image.asset(assetName, width: MediaQuery.of(context).size.width * 0.07),
-          SizedBox(width: 16,),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                fromName,
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              Text(dateString(fromDate)),
-              Icon(Icons.arrow_downward),
-              Text(
-                toName,
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              Text(dateString(toDate)),
-            ],
-          )
-        ],
+    return Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      elevation: 0,
+      child: Container(
+        padding: EdgeInsets.all(16.0),
+        child: Row(
+          children: [
+            Image.asset(assetName, width: MediaQuery.of(context).size.width * 0.07),
+            SizedBox(width: 16,),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  fromName,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                Text(dateString(fromDate)),
+                Icon(Icons.arrow_downward),
+                Text(
+                  toName,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                Text(dateString(toDate)),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
