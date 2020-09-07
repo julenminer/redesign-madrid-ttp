@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -23,42 +24,15 @@ class CardInfoGUI extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * 0.2,
               ),
               Flexible(
-                  child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Text(
-                  "ABONO 30 DÍAS JOVEN T. PLANA",
-                  style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.05),
-                ),
-              )),
-              PopupMenuButton<String>(
-                icon: Icon(Icons.more_vert),
-                onSelected: (String result) async {
-                  switch (result) {
-                    case "history":
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => UsageHistoryGui()));
-                      break;
-                    case "remove":
-                      SharedPreferences prefs =
-                          await SharedPreferences.getInstance();
-                      prefs.remove("cardNumber");
-                      cardProvider.removeCardNumber();
-                      break;
-                  }
-                },
-                itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-                  const PopupMenuItem<String>(
-                    value: "history",
-                    child: Text('View usage history'),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Text(
+                    "ABONO 30 DÍAS JOVEN T. PLANA",
+                    style: TextStyle(
+                        fontSize: MediaQuery.of(context).size.width * 0.05),
                   ),
-                  const PopupMenuItem<String>(
-                    value: "remove",
-                    child: Text('Remove card'),
-                  )
-                ],
-              )
+                ),
+              ),
             ],
           ),
           SizedBox(
@@ -93,16 +67,51 @@ class CardInfoGUI extends StatelessWidget {
             "Card number\n001 001 001 001 0000023768",
             style: Theme.of(context).textTheme.subtitle2,
           ),
-          SizedBox(height: 8,),
+          SizedBox(
+            height: 8,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Image.asset(
                 "assets/card-logos.png",
-                width: MediaQuery.of(context).size.width *0.3,
+                width: MediaQuery.of(context).size.width * 0.3,
               ),
             ],
-          )
+          ),
+          SizedBox(
+            height: 32,
+          ),
+          CupertinoButton.filled(
+            child: SizedBox(
+                width: double.maxFinite,
+                child: Text(
+                  "View usage history",
+                  textAlign: TextAlign.center,
+                )),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => UsageHistoryGui()));
+            },
+            borderRadius: BorderRadius.circular(25),
+          ),
+          SizedBox(
+            height: 16,
+          ),
+          CupertinoButton.filled(
+            child: SizedBox(
+                width: double.maxFinite,
+                child: Text(
+                  "Remove card",
+                  textAlign: TextAlign.center,
+                )),
+            onPressed: () async {
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              prefs.remove("cardNumber");
+              cardProvider.removeCardNumber();
+            },
+            borderRadius: BorderRadius.circular(25),
+          ),
         ],
       ),
     );

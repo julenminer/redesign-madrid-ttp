@@ -21,7 +21,14 @@ class _AddCardGUIState extends State<AddCardGUI> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
+        leading: Navigator.canPop(context)
+            ? IconButton(
+                icon: Icon(
+                  Icons.arrow_back,
+                ),
+                onPressed: () => Navigator.of(context).pop(),
+              )
+            : null,
         title: Text("Add card"),
       ),
       body: GestureDetector(
@@ -118,14 +125,14 @@ class _AddCardGUIState extends State<AddCardGUI> {
                 ),
                 SizedBox(
                   width: double.maxFinite,
-                  child: CupertinoButton(
-                    color: Theme.of(context).primaryColor,
+                  child: CupertinoButton.filled(
                     onPressed: () async {
                       SharedPreferences prefs =
                           await SharedPreferences.getInstance();
                       await prefs.setString("cardNumber", "001-0000023768");
                       Navigator.pop(context, prefs.getString("cardNumber"));
                     },
+                    borderRadius: BorderRadius.circular(25),
                     child: Text("Save"),
                   ),
                 )

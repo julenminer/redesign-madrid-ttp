@@ -13,21 +13,12 @@ class CardPageGUI extends StatelessWidget {
     return ChangeNotifierProvider<CardProvider>(
       create: (_) => new CardProvider(cardNumber),
       child: Consumer<CardProvider>(
-        builder: (context, cardProviderNotifier, child){
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SingleChildScrollView(
-              child: Card(
-                elevation: 3,
-                child: cardProviderNotifier.cardNumber == null
-                    ? CardAddGUI()
-                    : CardInfoGUI(),
-              ),
-            ),
-          );
+        builder: (context, cardProviderNotifier, child) {
+          return cardProviderNotifier.cardNumber == null
+              ? CardAddGUI()
+              : SingleChildScrollView(child: CardInfoGUI());
         },
       ),
     );
   }
 }
-
