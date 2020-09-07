@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class UsageHistoryGui extends StatelessWidget {
@@ -5,6 +6,14 @@ class UsageHistoryGui extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: Navigator.canPop(context)
+            ? IconButton(
+                icon: Icon(
+                  Icons.arrow_back,
+                ),
+                onPressed: () => Navigator.of(context).pop(),
+              )
+            : null,
         title: Text("Usage history"),
       ),
       backgroundColor: Colors.grey[100],
@@ -13,9 +22,24 @@ class UsageHistoryGui extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: ListView(
             children: [
-              ListElement(TransportType.cercanias, "Sol", DateTime(2020, 07, 11, 13, 22), "Avenida de América", DateTime(2020, 07, 11, 14, 7)),
-              ListElement(TransportType.metro, "Sol", DateTime(2020, 07, 10, 11, 02), "Pacífico", DateTime(2020, 07, 10, 11, 17)),
-
+              ListElement(
+                  TransportType.cercanias,
+                  "Sol",
+                  DateTime(2020, 08, 11, 13, 22),
+                  "Nuevos Ministerios",
+                  DateTime(2020, 08, 11, 14, 7)),
+              ListElement(
+                  TransportType.metro,
+                  "Sol",
+                  DateTime(2020, 08, 10, 11, 02),
+                  null,
+                  null),
+              ListElement(
+                  TransportType.bus,
+                  "Gran Vía 25",
+                  DateTime(2020, 08, 2, 16, 34),
+                  null,
+                  null),
             ],
           ),
         ),
@@ -24,14 +48,11 @@ class UsageHistoryGui extends StatelessWidget {
   }
 }
 
-enum TransportType {
-  metro,
-  cercanias,
-  bus
-}
+enum TransportType { metro, cercanias, bus }
 
 class ListElement extends StatelessWidget {
-  ListElement(this.transportType, this.fromName, this.fromDate, this.toName, this.toDate);
+  ListElement(this.transportType, this.fromName, this.fromDate, this.toName,
+      this.toDate);
 
   TransportType transportType;
   String fromName;
@@ -42,7 +63,7 @@ class ListElement extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String assetName = "";
-    switch(transportType){
+    switch (transportType) {
       case TransportType.metro:
         assetName = "assets/MetroMadridLogo.png";
         break;
@@ -60,23 +81,26 @@ class ListElement extends StatelessWidget {
         padding: EdgeInsets.all(16.0),
         child: Row(
           children: [
-            Image.asset(assetName, width: MediaQuery.of(context).size.width * 0.07),
-            SizedBox(width: 16,),
+            Image.asset(assetName,
+                width: MediaQuery.of(context).size.width * 0.07),
+            SizedBox(
+              width: 16,
+            ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+              children: <Widget>[
                 Text(
                   fromName,
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-                Text(dateString(fromDate)),
-                Icon(Icons.arrow_downward),
-                Text(
-                  toName,
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                Text(dateString(toDate)),
-              ],
+                Text(dateString(fromDate))
+              ]
+              + (transportType == TransportType.cercanias ? <Widget>[Icon(Icons.arrow_downward),
+                    Text(
+                      toName,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Text(dateString(toDate)),] :[]),
             )
           ],
         ),
@@ -86,14 +110,14 @@ class ListElement extends StatelessWidget {
 
   String dateString(DateTime date) {
     String returnString;
-    if(date.day < 10) {
-      returnString = "0"+ date.day.toString();
+    if (date.day < 10) {
+      returnString = "0" + date.day.toString();
     } else {
       returnString = date.day.toString();
     }
     returnString += "/";
-    if(date.month < 10) {
-      returnString += "0"+ date.month.toString();
+    if (date.month < 10) {
+      returnString += "0" + date.month.toString();
     } else {
       returnString += date.month.toString();
     }
@@ -103,14 +127,14 @@ class ListElement extends StatelessWidget {
 
     returnString += " · ";
 
-    if(date.hour < 10) {
-      returnString += "0"+ date.hour.toString();
+    if (date.hour < 10) {
+      returnString += "0" + date.hour.toString();
     } else {
       returnString += date.hour.toString();
     }
     returnString += ":";
-    if(date.minute < 10) {
-      returnString += "0"+ date.minute.toString();
+    if (date.minute < 10) {
+      returnString += "0" + date.minute.toString();
     } else {
       returnString += date.minute.toString();
     }
