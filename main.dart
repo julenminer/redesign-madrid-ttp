@@ -24,11 +24,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'CRTM',
       theme: ThemeData(
-        textTheme: GoogleFonts.montserratTextTheme(),
-        brightness: Brightness.light,
-        primarySwatch: MaterialColor(0xFFc43b22, color),
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+          //textTheme: GoogleFonts.latoTextTheme(),
+          brightness: Brightness.light,
+          primarySwatch: MaterialColor(0xFFc43b22, color),
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          appBarTheme: AppBarTheme(elevation: 0)),
       home: HomeGUI(
         cardNumber: cardNumber,
       ),
